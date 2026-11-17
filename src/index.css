@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   Slack Dark Theme Palette Definition
+   Authentic Slack Dark (Aubergine + Graphite Canvas):
+   - Sidebar: #19171D (Slack Deep Aubergine Charcoal)
+   - Sidebar Header/Footer: #121016 (Dark Aubergine Rail)
+   - Sidebar Active item: #4A154B / #611F69 (Slack Signature Aubergine)
+   - Main Canvas: #1A1D21 (Slack Dark Canvas)
+   - Panels, Cards & Input: #222529 (Slack Dark Surface)
+   - Hover highlight: #2B2D31 (Slack List Hover)
+   - Borders: #2E3136 & #383F45 (Slack Dark Border)
+   - Text Primary: #D1D2D3 / #FFFFFF
+   - Text Muted: #ABACAE
+   - Accents: #611F69 (Slack Aubergine), #007A5A (Slack Green), #1264A3 (Slack Blue), #ECB22E (Slack Yellow), #E01E5A (Slack Red Badge)
+   ========================================================================== */
+
+:root {
+  --slack-sidebar-bg: #19171d;
+  --slack-sidebar-rail: #121016;
+  --slack-sidebar-border: #2d2933;
+  --slack-sidebar-hover: #241c29;
+  --slack-sidebar-active: #4a154b;
+  --slack-canvas-bg: #1a1d21;
+  --slack-surface-bg: #222529;
+  --slack-surface-hover: #2b2d31;
+  --slack-border: #2e3136;
+  --slack-border-subtle: #383f45;
+  --slack-text-primary: #d1d2d3;
+  --slack-text-muted: #abacae;
+  --slack-aubergine: #4a154b;
+  --slack-aubergine-light: #611f69;
+  --slack-green: #007a5a;
+  --slack-blue: #1264a3;
+  --slack-yellow: #ecb22e;
+  --slack-badge: #e01e5a;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #383f45;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #565856;
+}
+
+/* Smooth transitions for theme toggling */
+* {
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* ==========================================================================
+   Slack Dark Theme Specific Overrides
+   ========================================================================== */
+
+.dark html,
+.dark body {
+  background-color: var(--slack-canvas-bg);
+  color: var(--slack-text-primary);
+}
+
+/* 1. Sidebar - Signature Slack Aubergine */
+.dark aside {
+  background-color: var(--slack-sidebar-bg) !important;
+  border-color: var(--slack-sidebar-border) !important;
+}
+
+.dark aside > div:first-child {
+  background-color: var(--slack-sidebar-rail) !important;
+  border-color: var(--slack-sidebar-border) !important;
+}
+
+.dark aside > div:last-child {
+  background-color: var(--slack-sidebar-rail) !important;
+  border-color: var(--slack-sidebar-border) !important;
+}
+
+/* Sidebar Conversation item hover & active states */
+.dark aside button[type="button"] {
+  color: var(--slack-text-primary);
+}
+
+.dark aside button[type="button"]:hover {
+  background-color: var(--slack-sidebar-hover) !important;
+}
+
+.dark aside .bg-blue-50,
+.dark aside .dark\:bg-blue-950\/40 {
+  background-color: var(--slack-sidebar-active) !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+}
+
+.dark aside .dark\:text-blue-100 {
+  color: #ffffff !important;
+}
+
+/* Sidebar Search Input */
+.dark aside input {
+  background-color: #241d2a !important;
+  border-color: #383040 !important;
+  color: #ffffff !important;
+}
+
+.dark aside input::placeholder {
+  color: #8c8294 !important;
+}
+
+/* Sidebar Filter Pills */
+.dark aside .dark\:bg-blue-950\/60 {
+  background-color: #3f1847 !important;
+  color: #f1c3f7 !important;
+}
+
+/* Unread Badge (Slack notification pill) */
+.dark .bg-blue-600.rounded-full {
+  background-color: var(--slack-badge) !important;
+  color: #ffffff !important;
+}
+
+/* App Logo in Sidebar */
+.dark aside .w-9.h-9.bg-blue-600 {
+  background-color: var(--slack-aubergine-light) !important;
+}
+
+/* 2. Main Chat Canvas - Slack Dark Charcoal (#1A1D21) */
+.dark main {
+  background-color: var(--slack-canvas-bg) !important;
+}
+
+/* Chat Header */
+.dark main > header {
+  background-color: var(--slack-canvas-bg) !important;
+  border-color: var(--slack-border) !important;
+}
+
+/* Message List Container & Scroll Area */
+.dark main > div.relative.flex-1 {
+  background-color: var(--slack-canvas-bg) !important;
+}
+
+.dark main div[ref="containerRef"],
+.dark .dark\:bg-slate-950\/50,
+.dark .dark\:bg-slate-950 {
+  background-color: var(--slack-canvas-bg) !important;
+}
+
+/* Message item row hover highlight */
+.dark .animate-message-in.hover\:bg-slate-50\/60:hover,
+.dark .dark\:bg-slate-800\/20 {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Other users' message bubble - Slack Dark Surface (#222529) */
+.dark .dark\:bg-slate-800 {
+  background-color: var(--slack-surface-bg) !important;
+  border-color: var(--slack-border) !important;
+  color: var(--slack-text-primary) !important;
+}
+
+/* Current user's message bubble - Slack Aubergine / Purple */
+.dark .bg-blue-600:not(.rounded-full):not(aside button):not(header button) {
+  background-color: var(--slack-aubergine-light) !important;
+}
+
+/* Date separator pill in message list */
+.dark .dark\:bg-slate-800\/80 {
+  background-color: var(--slack-surface-bg) !important;
+  border: 1px solid var(--slack-border-subtle) !important;
+  color: var(--slack-text-muted) !important;
+}
+
+/* Floating Action Bar on hover */
+.dark .shadow-md.border.border-slate-200.dark\:border-slate-700 {
+  background-color: var(--slack-surface-bg) !important;
+  border-color: var(--slack-border-subtle) !important;
+}
+
+/* Message Composer bottom container */
+.dark main > div.relative.border-t {
+  background-color: var(--slack-canvas-bg) !important;
+  border-color: var(--slack-border) !important;
+}
+
+/* Composer Textarea container */
+.dark main textarea {
+  color: #ffffff !important;
+}
+
+.dark main textarea::placeholder {
+  color: var(--slack-text-muted) !important;
+}
+
+.dark main div.focus-within\:border-blue-500:focus-within {
+  border-color: var(--slack-aubergine-light) !important;
+  box-shadow: 0 0 0 1px var(--slack-aubergine-light) !important;
+}
+
+/* Send Button in message composer */
+.dark main form button[type="submit"].bg-blue-600 {
+  background-color: var(--slack-green) !important;
+}
+.dark main form button[type="submit"].bg-blue-600:hover {
+  background-color: #008a65 !important;
+}
+
+/* 3. Modals & Dialogs (Group Modal) */
+.dark [role="dialog"] > div.relative {
+  background-color: var(--slack-canvas-bg) !important;
+  border-color: var(--slack-border-subtle) !important;
+}
+
+.dark [role="dialog"] input,
+.dark [role="dialog"] select {
+  background-color: var(--slack-surface-bg) !important;
+  border-color: var(--slack-border-subtle) !important;
+  color: #ffffff !important;
+}
+
+/* 4. Dropdown menus */
+.dark .min-w-\[160px\].bg-white.dark\:bg-slate-800 {
+  background-color: var(--slack-surface-bg) !important;
+  border-color: var(--slack-border-subtle) !important;
+}
+
+/* Micro Animations */
+@keyframes message-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-message-in {
+  animation: message-in 0.2s ease-out;
+}
+
+/* Typing indicator dots */
+@keyframes typing-dot {
+  0%, 60%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+.typing-dot:nth-child(1) { animation: typing-dot 1.4s infinite 0s; }
+.typing-dot:nth-child(2) { animation: typing-dot 1.4s infinite 0.2s; }
+.typing-dot:nth-child(3) { animation: typing-dot 1.4s infinite 0.4s; }
